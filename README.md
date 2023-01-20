@@ -18,7 +18,6 @@ How to use:
 In Progress:
 1. Adding scripts to existing buttons to make the functional
 2. Buttons to add:
-    1. Toggle Dark/Light Mode (System Wide and for WinUtils)
-    2. Enable/Disable Windows Buitin Clipboard
+    1. Enable/Disable Windows Buitin Clipboard
 
 More buttons to come..
