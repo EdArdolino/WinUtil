@@ -65,16 +65,15 @@ function WinGetUpdate() {
 
 # Script for Dark/ Light Mode Toggle
 function ThemeToggle() {
-    $DarkMode = 0
-    $LightMode = 1
+    $GetProperty = (Get-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize).AppsUseLightTheme
 
-    #Toggle Dark Mode
-    #Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
-
-    #Toggle Light Mode
-    #Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
-
-    Write-Host "Working on it"
+    if ($GetProperty -eq 0) {
+        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
+        #Write-Host "Light Mode Enabled"
+    }else {
+        Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
+        #Write-Host "Dark Mode Enabled"
+    }
 }
 
 
