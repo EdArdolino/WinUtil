@@ -42,13 +42,41 @@ $WinGetButton.Height = '75'
 $WinGetButton.Location = New-Object System.Drawing.Point(125,225)
 $WinGetButton.Font = 'Microsoft Sans Serif,10'
 $WinGetButton.ForeColor = "#000000"
-$WinGetButton.Add_Click{Write-Host "Work in progress"}
+$WinGetButton.Add_Click({WinGetUpdate})
 $GUI.Controls.Add($WinGetButton)
+
+# Add 'Dark Mode/ Light Mode' Button (System)
+$DarkLightToggleButton = New-Object System.Windows.Forms.Button
+$DarkLightToggleButton.BackColor = "#FF0000"
+$DarkLightToggleButton.Text = "Toggle Dark Mode (System)"
+$DarkLightToggleButton.Width = '75'
+$DarkLightToggleButton.Height = '75'
+$DarkLightToggleButton.Location = New-Object System.Drawing.Point(150,25)
+$DarkLightToggleButton.Font = 'Microsoft Sans Serif,10'
+$DarkLightToggleButton.ForeColor = "#000000"
+$DarkLightToggleButton.Add_Click({ThemeToggle})
+$GUI.Controls.Add($DarkLightToggleButton)
 
 # Script for WinGet Button
 function WinGetUpdate() {
-    winget upgrade --all
+    Start-Process powershell -verb runas -ArgumentList "-file fullpathofthescript"
+    #winget upgrade --all
 }
+
+# Script for Dark/ Light Mode Toggle
+function ThemeToggle() {
+    $DarkMode = 0
+    $LightMode = 1
+
+    #Toggle Dark Mode
+    #Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
+
+    #Toggle Light Mode
+    #Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 1
+
+    Write-Host "Working on it"
+}
+
 
 # Display GUI
 [void]$GUI.ShowDialog()
